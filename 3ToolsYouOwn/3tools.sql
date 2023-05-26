@@ -31,16 +31,16 @@ FROM sys.dm_exec_query_stats AS deqs
 CREATE EVENT SESSION [QueryPerformance]
 ON database
     ADD EVENT sqlserver.rpc_completed
-    (WHERE ([sqlserver].[database_name] = N'AdventureWorks')),
+    (WHERE ([sqlserver].[database_name] = N'sbxtax')),
     ADD EVENT sqlserver.sql_batch_completed
-    (WHERE ([sqlserver].[database_name] = N'AdventureWorks'));
+    (WHERE ([sqlserver].[database_name] = N'sbxtax'));
 
 
 
 
 
 --Query Store
-ALTER DATABASE AdventureWorks SET QUERY_STORE = ON;
+ALTER DATABASE sbxtax SET QUERY_STORE = ON;
 
 
 
@@ -52,7 +52,7 @@ FROM sys.query_store_query AS qsq
         ON qsqt.query_text_id = qsq.query_text_id;
 
 
-ALTER DATABASE AdventureWorks SET QUERY_STORE CLEAR;
+ALTER DATABASE sbxtax SET QUERY_STORE CLEAR;
 
 
 CREATE OR ALTER PROC dbo.AddressByCity @City NVARCHAR(30)
@@ -114,7 +114,7 @@ WHERE qsq.object_id = OBJECT_ID('dbo.AddressByCity');
 
 
 
-USE [AdventureWorks]
+USE [sbxtax]
 GO
 
 /****** Object:  StoredProcedure [dbo].[ProductTransactionHistoryByReference]    Script Date: 12/9/2021 8:44:15 AM ******/
